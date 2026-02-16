@@ -1,0 +1,321 @@
+/* =====================================================
+   RESET
+===================================================== */
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html, body{
+    width:100%;
+    height:100%;
+}
+
+/* =====================================================
+   BODY
+===================================================== */
+body{
+    min-height:100svh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    padding:30px;
+    font-family:'Poppins',sans-serif;
+    transition:1s;
+}
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+body.page1{
+    background:linear-gradient(135deg,#ffe5d9,#ffd6e8);
+}
+
+body.page2{
+    background:linear-gradient(135deg,#e0c3fc,#fbc8d4);
+}
+
+/* =====================================================
+   CARD
+===================================================== */
+.card{
+    background:white;
+    width:100%;
+    max-width:620px;
+    min-height:650px;
+    padding:48px;
+    border-radius:42px;
+    box-shadow:0 30px 70px rgba(255,105,180,.35);
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    z-index:5;
+}
+
+/* =====================================================
+   CAT
+===================================================== */
+.cat{
+    display:flex;
+    justify-content:center;
+}
+
+.cat img{
+    width:260px;
+    animation:catFloat 2.2s infinite ease-in-out;
+}
+
+@keyframes catFloat{
+    50%{transform:translateY(-14px)}
+}
+
+/* =====================================================
+   TEXT
+===================================================== */
+h1{
+    font-family:'Fredoka',cursive;
+    color:#ff5d8f;
+    font-size:34px;
+    margin:18px 0 12px;
+    animation:breathe 3s ease-in-out infinite;
+}
+
+#text{
+    font-family:'Fredoka',cursive;
+    color:#ff5d8f;
+    font-size:26px;
+    margin-bottom:14px;
+    animation:wiggle 2.5s ease-in-out infinite;
+}
+
+/* =====================================================
+   TEXT EFFECT
+===================================================== */
+@keyframes pulsingGlow{
+    0%,100%{
+        text-shadow:0 0 8px #ff5d8f,0 0 16px #ff5d8f;
+        transform:scale(1);
+    }
+    50%{
+        text-shadow:0 0 22px #ff8fab,0 0 44px #ff8fab;
+        transform:scale(1.05);
+    }
+}
+
+@keyframes rainbowShimmer{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.pulsingGlow{
+    animation:pulsingGlow 2s ease-in-out infinite;
+}
+
+.rainbowShimmer{
+    background:linear-gradient(45deg,#ff5d8f,#ffd6e8,#c77dff,#ff5d8f);
+    background-size:400% 400%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:rainbowShimmer 3s ease-in-out infinite;
+}
+
+/* =====================================================
+   BASIC ANIMATION
+===================================================== */
+@keyframes breathe{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.05)}
+}
+
+@keyframes wiggle{
+    0%,100%{transform:rotate(0)}
+    25%{transform:rotate(2deg)}
+    75%{transform:rotate(-2deg)}
+}
+
+/* =====================================================
+   BUTTON
+===================================================== */
+.buttons{
+    margin-top:26px;
+}
+
+button{
+    border:none;
+    padding:20px 44px;
+    border-radius:50px;
+    font-size:22px;
+    font-family:'Fredoka',cursive;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+#yesBtn,#noBtn{
+    background:linear-gradient(135deg,#ff5d8f,#ff8fab);
+    color:white;
+}
+
+#nextBtn{
+    background:linear-gradient(135deg,#c77dff,#e0aaff);
+    color:white;
+    margin-top:24px;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+.form{
+    width:100%;
+    margin-top:18px;
+}
+
+.form input{
+    width:100%;
+    padding:18px;
+    margin-top:14px;
+    border-radius:26px;
+    border:1px solid #ddd;
+    font-size:18px;
+}
+
+/* =====================================================
+   FINAL TEXT
+===================================================== */
+.final-text{
+    font-family:'Fredoka',cursive;
+    font-size:28px;
+    color:#ff5d8f;
+    animation:pulsingGlow 2s ease-in-out infinite;
+    white-space:pre-line;
+    text-align:center;
+}
+
+/* =====================================================
+   POPUP
+===================================================== */
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-box{
+    background:linear-gradient(135deg,#ff5d8f,#ff8fab);
+    color:white;
+    padding:34px 40px;
+    border-radius:34px;
+    font-size:22px;
+    text-align:center;
+}
+
+/* =====================================================
+   EFFECT (UMUM – FIX COMPATIBLE)
+===================================================== */
+.effect,
+.effect-love,
+.effect-spark,
+.effect-firework,
+.flower{
+    position:fixed;
+    pointer-events:none;
+    z-index:50;
+}
+
+/* ❤️ LOVE */
+.effect-love,
+.effect{
+    font-size:30px;
+    animation:loveFloat 1.6s ease-out forwards;
+}
+
+@keyframes loveFloat{
+    to{
+        transform:translateY(-90px) scale(1.4);
+        opacity:0;
+    }
+}
+
+/* ✨ SPARK */
+.effect-spark{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:radial-gradient(circle,#fff,#ffd6e8,#ff5d8f);
+    animation:sparkFly .9s ease-out forwards;
+}
+
+@keyframes sparkFly{
+    to{
+        transform:translate(var(--x),var(--y)) scale(0);
+        opacity:0;
+    }
+}
+
+/* 🎆 FIREWORK (FIX WARNA) */
+.effect-firework{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#ff5d8f; /* DEFAULT FIX */
+    animation:firework 1.2s ease-out forwards;
+}
+
+@keyframes firework{
+    to{
+        transform:translate(var(--x),var(--y)) scale(0);
+        opacity:0;
+    }
+}
+
+/* 🌸 FLOWER */
+.flower{
+    top:-20px;
+    font-size:26px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+
+/* =====================================================
+   UTIL
+===================================================== */
+.hidden{
+    display:none;
+}
+
+/* =====================================================
+   MOBILE SAFE
+===================================================== */
+@media (max-width:480px){
+    .card{
+        max-width:100%;
+        min-height:580px;
+        padding:32px;
+    }
+
+    .cat img{width:220px}
+    h1{font-size:28px}
+    #text{font-size:22px}
+    .final-text{font-size:24px}
+}

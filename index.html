@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Lucu 🐱</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+html,body{width:100%;height:100%}
+
+body{
+    min-height:100svh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    padding:30px;
+    font-family:'Poppins',sans-serif;
+    transition:1s;
+}
+
+body.page1{background:linear-gradient(135deg,#ffe5d9,#ffd6e8)}
+body.page2{background:linear-gradient(135deg,#e0c3fc,#fbc8d4)}
+
+.card{
+    background:white;
+    width:100%;
+    max-width:600px;
+    min-height:640px;
+    padding:45px;
+    border-radius:40px;
+    text-align:center;
+    box-shadow:0 30px 70px rgba(255,105,180,.35);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    z-index:5;
+}
+
+.cat img{
+    width:250px;
+    animation:catFloat 2.2s infinite ease-in-out;
+}
+
+@keyframes catFloat{50%{transform:translateY(-14px)}}
+
+h1{
+    font-family:'Fredoka',cursive;
+    color:#ff5d8f;
+    font-size:32px;
+    margin:18px 0 12px;
+    animation:breathe 3s ease-in-out infinite;
+}
+
+#text{
+    font-family:'Fredoka',cursive;
+    color:#ff5d8f;
+    font-size:24px;
+    margin-bottom:14px;
+    animation:wiggle 2.5s ease-in-out infinite;
+}
+
+@keyframes breathe{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.06)}
+}
+@keyframes wiggle{
+    0%,100%{transform:rotate(0)}
+    25%{transform:rotate(2deg)}
+    75%{transform:rotate(-2deg)}
+}
+
+@keyframes pulsingGlow{
+    0%,100%{text-shadow:0 0 8px #ff5d8f}
+    50%{text-shadow:0 0 24px #ff8fab}
+}
+
+.pulsingGlow{animation:pulsingGlow 2s infinite}
+
+.rainbowShimmer{
+    background:linear-gradient(45deg,#ff5d8f,#ffd6e8,#c77dff,#ff5d8f);
+    background-size:400% 400%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:rainbow 3s infinite;
+}
+
+@keyframes rainbow{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.buttons{margin-top:26px}
+
+button{
+    border:none;
+    padding:20px 44px;
+    border-radius:50px;
+    font-size:22px;
+    cursor:pointer;
+    font-family:'Fredoka',cursive;
+    transition:.3s;
+}
+
+button:hover{transform:scale(1.08)}
+
+#yesBtn,#noBtn{
+    background:linear-gradient(135deg,#ff5d8f,#ff8fab);
+    color:white;
+}
+
+#nextBtn{
+    background:linear-gradient(135deg,#c77dff,#e0aaff);
+    color:white;
+    margin-top:24px;
+}
+
+.form{width:100%;margin-top:20px}
+.form input{
+    width:100%;
+    padding:18px;
+    margin-top:14px;
+    border-radius:26px;
+    border:1px solid #ddd;
+    font-size:18px;
+}
+
+.final-text{
+    font-family:'Fredoka',cursive;
+    font-size:28px;
+    color:#ff5d8f;
+    animation:pulsingGlow 2s infinite;
+    white-space:pre-line;
+}
+
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.popup-box{
+    background:linear-gradient(135deg,#ff5d8f,#ff8fab);
+    color:white;
+    padding:34px 40px;
+    border-radius:34px;
+    text-align:center;
+}
+
+.effect{
+    position:fixed;
+    font-size:28px;
+    pointer-events:none;
+    animation:fadeUp 1.4s linear forwards;
+    z-index:50;
+}
+
+@keyframes fadeUp{
+    to{transform:translateY(-60px);opacity:0}
+}
+
+.flower{
+    position:fixed;
+    top:-20px;
+    font-size:26px;
+    animation:fall linear forwards;
+    pointer-events:none;
+    z-index:40;
+}
+
+@keyframes fall{
+    to{transform:translateY(110vh);opacity:0}
+}
+
+.hidden{display:none}
+</style>
+</head>
+
+<body class="page1">
+
+<!-- 🔊 AUDIO -->
+<audio id="clickSound" src="sounds/click.mp3"></audio>
+<audio id="yesSound" src="sounds/love.mp3"></audio>
+<audio id="fireSound" src="Sound/ssstik.io_1771244183150.mp3" loop></audio>
+
+<div class="card" id="page1">
+    <div class="cat">
+        <img id="catImg" src="gifs/A.gif">
+    </div>
+
+    <h1 id="title" class="pulsingGlow">Ehh kamu, aku mau nanya sesuatu 😳</h1>
+    <p id="text" class="rainbowShimmer">Kamu mau ngga jadi valentine-ku? 💖</p>
+
+    <div class="buttons" id="buttons">
+        <button id="yesBtn">IYA 💖</button>
+        <button id="noBtn">NGGAK 🙈</button>
+    </div>
+
+    <button id="nextBtn" class="hidden">Lanjut Yaaaaa 👉👈</button>
+
+    <div class="form hidden" id="dateForm">
+        <p class="final-text">Kita ketemu kapan? 😆</p>
+        <input type="date" id="date">
+        <input type="time" id="time">
+        <button id="submitBtn" style="margin-top:14px;background:#ff5d8f;color:white">
+            Gas 💕
+        </button>
+    </div>
+</div>
+
+<div class="card hidden" id="page2">
+    <img src="gifs/F.gif">
+    <h1 class="final-text">FIX RESMI 💖</h1>
+    <p id="resultText" class="final-text"></p>
+    <p class="final-text">Aku tunggu yaa… jangan PHP 🥺</p>
+</div>
+
+<div class="popup hidden" id="popup">
+    <div class="popup-box">
+        <p id="popupText"></p>
+        <button onclick="closePopup()">Okeee 💕</button>
+    </div>
+</div>
+
+<script>
+const clickSound=document.getElementById("clickSound");
+const yesSound=document.getElementById("yesSound");
+const fireSound=document.getElementById("fireSound");
+
+function play(sound,vol=0.7){
+    sound.currentTime=0;
+    sound.volume=vol;
+    sound.play().catch(()=>{});
+}
+
+let isAccepted=false,noCount=0;
+
+const phases=[
+ {title:"Pliss iyain ajaa yaaa 🥺",gif:"gifs/B.gif"},
+ {title:"Jangan gitu dong 😝",gif:"gifs/C.gif"},
+ {title:"Aku sedih tau 😢",gif:"gifs/D.gif"},
+ {title:"Please YES aja yaa 💕",gif:"gifs/E.gif"}
+];
+
+const title=document.getElementById("title");
+const text=document.getElementById("text");
+const catImg=document.getElementById("catImg");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const nextBtn=document.getElementById("nextBtn");
+const dateForm=document.getElementById("dateForm");
+const page1=document.getElementById("page1");
+const page2=document.getElementById("page2");
+const resultText=document.getElementById("resultText");
+
+yesBtn.onclick=()=>{
+    play(yesSound,0.8);
+    play(fireSound,0.5);
+    sayYes();
+};
+
+noBtn.onmouseover=runAway;
+nextBtn.onclick=showForm;
+document.getElementById("submitBtn").onclick=submitDate;
+
+function runAway(){
+    if(isAccepted) return;
+    play(clickSound,0.3);
+    const p=phases[noCount%phases.length];
+    title.innerText=p.title;
+    catImg.src=p.gif;
+
+    noBtn.style.position="fixed";
+    noBtn.style.left=Math.random()*(innerWidth-noBtn.offsetWidth)+"px";
+    noBtn.style.top=Math.random()*(innerHeight-noBtn.offsetHeight)+"px";
+
+    yesBtn.style.transform=`scale(${1+noCount*0.15})`;
+    noCount++;
+}
+
+function sayYes(){
+    isAccepted=true;
+    title.innerText="Aku tau kok 😜💖";
+    text.innerText="kamu sebenernya mau kan~";
+    buttons.classList.add("hidden");
+    nextBtn.classList.remove("hidden");
+    for(let i=0;i<25;i++) heart();
+}
+
+function showForm(){
+    document.body.className="page2";
+    nextBtn.classList.add("hidden");
+    dateForm.classList.remove("hidden");
+}
+
+function submitDate(){
+    if(!date.value||!time.value){
+        showPopup();
+        return;
+    }
+    page1.classList.add("hidden");
+    page2.classList.remove("hidden");
+    play(fireSound,0.7);
+
+    resultText.innerText=`Deal yaa 💕
+Tanggal ${date.value}
+Jam ${time.value} 😆`;
+
+    for(let i=0;i<40;i++) heart();
+}
+
+function heart(){
+    const e=document.createElement("div");
+    e.className="effect";
+    e.innerHTML="💖";
+    e.style.left=Math.random()*innerWidth+"px";
+    e.style.top=Math.random()*innerHeight+"px";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),1400);
+}
+
+const popup=document.getElementById("popup");
+const popupText=document.getElementById("popupText");
+
+function showPopup(){
+    popupText.innerText="Tanggal & jamnya diisi dulu yaa 💕";
+    popup.classList.remove("hidden");
+}
+function closePopup(){
+    popup.classList.add("hidden");
+}
+
+setInterval(()=>{
+    const f=document.createElement("div");
+    f.className="flower";
+    f.innerHTML="🌸";
+    f.style.left=Math.random()*innerWidth+"px";
+    f.style.animationDuration=(Math.random()*3+5)+"s";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),8000);
+},900);
+</script>
+
+</body>
+</html>
