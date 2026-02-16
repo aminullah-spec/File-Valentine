@@ -1,16 +1,8 @@
 /* =====================================================
    RESET
 ===================================================== */
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html, body{
-    width:100%;
-    height:100%;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%}
 
 /* =====================================================
    BODY
@@ -21,21 +13,12 @@ body{
     justify-content:center;
     align-items:center;
     overflow:hidden;
-    padding:30px;
+    padding:calc(30px + env(safe-area-inset-bottom));
     font-family:'Poppins',sans-serif;
     transition:1s;
 }
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
-body.page1{
-    background:linear-gradient(135deg,#ffe5d9,#ffd6e8);
-}
-
-body.page2{
-    background:linear-gradient(135deg,#e0c3fc,#fbc8d4);
-}
+body.page1{background:linear-gradient(135deg,#ffe5d9,#ffd6e8)}
+body.page2{background:linear-gradient(135deg,#e0c3fc,#fbc8d4)}
 
 /* =====================================================
    CARD
@@ -43,12 +26,12 @@ body.page2{
 .card{
     background:white;
     width:100%;
-    max-width:620px;
-    min-height:650px;
-    padding:48px;
-    border-radius:42px;
-    box-shadow:0 30px 70px rgba(255,105,180,.35);
+    max-width:600px;
+    min-height:auto;
+    padding:clamp(20px,5vw,45px);
+    border-radius:40px;
     text-align:center;
+    box-shadow:0 30px 70px rgba(255,105,180,.35);
 
     display:flex;
     flex-direction:column;
@@ -62,19 +45,11 @@ body.page2{
 /* =====================================================
    CAT
 ===================================================== */
-.cat{
-    display:flex;
-    justify-content:center;
-}
-
 .cat img{
-    width:260px;
+    width:min(250px,70vw);
     animation:catFloat 2.2s infinite ease-in-out;
 }
-
-@keyframes catFloat{
-    50%{transform:translateY(-14px)}
-}
+@keyframes catFloat{50%{transform:translateY(-14px)}}
 
 /* =====================================================
    TEXT
@@ -82,7 +57,7 @@ body.page2{
 h1{
     font-family:'Fredoka',cursive;
     color:#ff5d8f;
-    font-size:34px;
+    font-size:clamp(22px,6vw,32px);
     margin:18px 0 12px;
     animation:breathe 3s ease-in-out infinite;
 }
@@ -90,51 +65,15 @@ h1{
 #text{
     font-family:'Fredoka',cursive;
     color:#ff5d8f;
-    font-size:26px;
+    font-size:clamp(18px,5vw,24px);
     margin-bottom:14px;
     animation:wiggle 2.5s ease-in-out infinite;
 }
 
-/* =====================================================
-   TEXT EFFECT
-===================================================== */
-@keyframes pulsingGlow{
-    0%,100%{
-        text-shadow:0 0 8px #ff5d8f,0 0 16px #ff5d8f;
-        transform:scale(1);
-    }
-    50%{
-        text-shadow:0 0 22px #ff8fab,0 0 44px #ff8fab;
-        transform:scale(1.05);
-    }
-}
-
-@keyframes rainbowShimmer{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-
-.pulsingGlow{
-    animation:pulsingGlow 2s ease-in-out infinite;
-}
-
-.rainbowShimmer{
-    background:linear-gradient(45deg,#ff5d8f,#ffd6e8,#c77dff,#ff5d8f);
-    background-size:400% 400%;
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:rainbowShimmer 3s ease-in-out infinite;
-}
-
-/* =====================================================
-   BASIC ANIMATION
-===================================================== */
 @keyframes breathe{
     0%,100%{transform:scale(1)}
-    50%{transform:scale(1.05)}
+    50%{transform:scale(1.06)}
 }
-
 @keyframes wiggle{
     0%,100%{transform:rotate(0)}
     25%{transform:rotate(2deg)}
@@ -142,31 +81,51 @@ h1{
 }
 
 /* =====================================================
+   TEXT EFFECT
+===================================================== */
+@keyframes pulsingGlow{
+    0%,100%{text-shadow:0 0 8px #ff5d8f}
+    50%{text-shadow:0 0 24px #ff8fab}
+}
+.pulsingGlow{animation:pulsingGlow 2s infinite}
+
+.rainbowShimmer{
+    background:linear-gradient(45deg,#ff5d8f,#ffd6e8,#c77dff,#ff5d8f);
+    background-size:400% 400%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:rainbow 3s infinite;
+}
+@keyframes rainbow{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* =====================================================
    BUTTON
 ===================================================== */
-.buttons{
-    margin-top:26px;
-}
+.buttons{margin-top:26px}
 
 button{
     border:none;
-    padding:20px 44px;
     border-radius:50px;
-    font-size:22px;
-    font-family:'Fredoka',cursive;
     cursor:pointer;
+    font-family:'Fredoka',cursive;
     transition:.3s;
+
+    /* PERKECIL DI SINI */
+    font-size:clamp(14px,3.8vw,18px);
+    padding:clamp(10px,3vw,14px) clamp(20px,6vw,30px);
 }
 
-button:hover{
-    transform:scale(1.08);
-}
+
+button:hover{transform:scale(1.08)}
 
 #yesBtn,#noBtn{
     background:linear-gradient(135deg,#ff5d8f,#ff8fab);
     color:white;
 }
-
 #nextBtn{
     background:linear-gradient(135deg,#c77dff,#e0aaff);
     color:white;
@@ -176,11 +135,7 @@ button:hover{
 /* =====================================================
    FORM
 ===================================================== */
-.form{
-    width:100%;
-    margin-top:18px;
-}
-
+.form{width:100%;margin-top:20px}
 .form input{
     width:100%;
     padding:18px;
@@ -195,11 +150,10 @@ button:hover{
 ===================================================== */
 .final-text{
     font-family:'Fredoka',cursive;
-    font-size:28px;
+    font-size:clamp(20px,5.5vw,28px);
     color:#ff5d8f;
-    animation:pulsingGlow 2s ease-in-out infinite;
+    animation:pulsingGlow 2s infinite;
     white-space:pre-line;
-    text-align:center;
 }
 
 /* =====================================================
@@ -212,110 +166,121 @@ button:hover{
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:1000;
+    z-index:999;
 }
-
 .popup-box{
     background:linear-gradient(135deg,#ff5d8f,#ff8fab);
     color:white;
     padding:34px 40px;
     border-radius:34px;
-    font-size:22px;
     text-align:center;
 }
 
 /* =====================================================
-   EFFECT (UMUM – FIX COMPATIBLE)
+   EFFECT
 ===================================================== */
-.effect,
-.effect-love,
-.effect-spark,
-.effect-firework,
-.flower{
+.effect{
     position:fixed;
+    font-size:28px;
     pointer-events:none;
+    animation:fadeUp 1.4s linear forwards;
     z-index:50;
 }
-
-/* ❤️ LOVE */
-.effect-love,
-.effect{
-    font-size:30px;
-    animation:loveFloat 1.6s ease-out forwards;
+@keyframes fadeUp{
+    to{transform:translateY(-60px);opacity:0}
 }
-
-@keyframes loveFloat{
-    to{
-        transform:translateY(-90px) scale(1.4);
-        opacity:0;
-    }
-}
-
-/* ✨ SPARK */
-.effect-spark{
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:radial-gradient(circle,#fff,#ffd6e8,#ff5d8f);
-    animation:sparkFly .9s ease-out forwards;
-}
-
-@keyframes sparkFly{
-    to{
-        transform:translate(var(--x),var(--y)) scale(0);
-        opacity:0;
-    }
-}
-
-/* 🎆 FIREWORK (FIX WARNA) */
-.effect-firework{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#ff5d8f; /* DEFAULT FIX */
-    animation:firework 1.2s ease-out forwards;
-}
-
-@keyframes firework{
-    to{
-        transform:translate(var(--x),var(--y)) scale(0);
-        opacity:0;
-    }
-}
-
-/* 🌸 FLOWER */
 .flower{
+    position:fixed;
     top:-20px;
     font-size:26px;
     animation:fall linear forwards;
+    pointer-events:none;
+    z-index:40;
 }
-
 @keyframes fall{
-    to{
-        transform:translateY(110vh);
-        opacity:0;
-    }
+    to{transform:translateY(110vh);opacity:0}
 }
 
 /* =====================================================
    UTIL
 ===================================================== */
-.hidden{
+.hidden{display:none}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+@media(max-width:480px){
+    .buttons{
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+    }
+}
+
+
+@media (max-width:480px){
+    #yesBtn, #noBtn{
+        font-size:14px;
+        padding:10px 22px;
+    }
+}
+
+.romantic-intro{
+    font-family:'Fredoka',cursive;
+    font-size:clamp(16px,4.5vw,22px);
+    color:#ff7aa2;
+    margin:18px 0 22px;
+    line-height:1.5;
+}
+
+#nameInput{
+    width:100%;
+    padding:18px;
+    border-radius:26px;
+    border:1px solid #ffd6e8;
+    font-size:18px;
+    text-align:center;
+    outline:none;
+    transition:.3s;
+}
+
+#nameInput:focus{
+    border-color:#ff8fab;
+    box-shadow:0 0 0 3px rgba(255,143,171,.25);
+}
+
+.romantic-btn{
+    margin-top:22px;
+    background:linear-gradient(135deg,#ff5d8f,#ff8fab);
+    color:white;
+    padding:14px 38px;
+}
+
+
+/* Animasi popup romantis */
+.popup{
+    background:rgba(255,182,193,.35);
+    backdrop-filter:blur(6px);
+}
+
+.popup-box{
+    animation:popRomantic .45s ease-out;
+}
+
+@keyframes popRomantic{
+    from{
+        transform:scale(.75) translateY(20px);
+        opacity:0;
+    }
+    to{
+        transform:scale(1) translateY(0);
+        opacity:1;
+    }
+}
+
+/* Popup TANPA tombol */
+.popup-box.no-action button{
     display:none;
 }
 
-/* =====================================================
-   MOBILE SAFE
-===================================================== */
-@media (max-width:480px){
-    .card{
-        max-width:100%;
-        min-height:580px;
-        padding:32px;
-    }
 
-    .cat img{width:220px}
-    h1{font-size:28px}
-    #text{font-size:22px}
-    .final-text{font-size:24px}
-}
